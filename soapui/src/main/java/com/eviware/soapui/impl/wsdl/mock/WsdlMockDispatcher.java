@@ -272,7 +272,6 @@ public class WsdlMockDispatcher extends AbstractMockDispatcher
 
 					result.setTimeTaken( ( System.nanoTime() - startTime ) / 1000000 );
 					result.setTimestamp( timestamp );
-					addMockResult( result );
 					return result;
 				}
 				else
@@ -336,7 +335,6 @@ public class WsdlMockDispatcher extends AbstractMockDispatcher
 
 	public void release()
 	{
-		clearResults();
 		mockContext.clear();
 	}
 

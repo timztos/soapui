@@ -21,8 +21,10 @@ import com.eviware.soapui.impl.support.AbstractMockService;
 import com.eviware.soapui.impl.wsdl.WsdlInterface;
 import com.eviware.soapui.impl.wsdl.WsdlOperation;
 import com.eviware.soapui.impl.wsdl.testcase.WsdlTestRunContext;
-import com.eviware.soapui.model.Releasable;
-import com.eviware.soapui.model.mock.*;
+import com.eviware.soapui.model.mock.MockDispatcher;
+import com.eviware.soapui.model.mock.MockResult;
+import com.eviware.soapui.model.mock.MockRunListener;
+import com.eviware.soapui.model.mock.MockRunner;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -115,18 +117,6 @@ public class WsdlMockRunner implements MockRunner
 		mockContext.clear();
 		dispatcher = null;
 
-	}
-
-	@Override
-	public int getMockResultCount()
-	{
-		return dispatcher.getMockResultCount();
-	}
-
-	@Override
-	public MockResult getMockResultAt( int index )
-	{
-		return dispatcher.getMockResultAt( index );
 	}
 
 	@Override
@@ -247,15 +237,4 @@ public class WsdlMockRunner implements MockRunner
 		dispatcher.setLogEnabled( logEnabled );
 	}
 
-	@Override
-	public void clearResults()
-	{
-		dispatcher.clearResults();
-	}
-
-
-	public void setMaxResults( long maxNumberOfResults )
-	{
-		dispatcher.setMaxResults( maxNumberOfResults );
-	}
 }

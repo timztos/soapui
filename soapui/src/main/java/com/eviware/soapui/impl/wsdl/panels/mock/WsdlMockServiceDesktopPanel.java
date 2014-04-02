@@ -432,7 +432,6 @@ public class WsdlMockServiceDesktopPanel<MockServiceType extends AbstractMockSer
 		public void onMockRunnerStart( MockRunner runner )
 		{
 			mockRunner = ( WsdlMockRunner )runner;
-			mockRunner.setMaxResults( logListModel.getMaxSize() );
 			mockRunner.setLogEnabled( enableLogCheckBox.isSelected() );
 
 			progressBarWrapper.setIndeterminate( true );
@@ -666,8 +665,6 @@ public class WsdlMockServiceDesktopPanel<MockServiceType extends AbstractMockSer
 	protected void setMaxLogSize( long size )
 	{
 		logListModel.setMaxSize( size );
-		if( mockRunner != null )
-			mockRunner.setMaxResults( logListModel.getMaxSize() );
 	}
 
 	@SuppressWarnings( "unchecked" )
@@ -790,8 +787,6 @@ public class WsdlMockServiceDesktopPanel<MockServiceType extends AbstractMockSer
 		public void actionPerformed( ActionEvent e )
 		{
 			logListModel.clear();
-			if( mockRunner != null )
-				mockRunner.clearResults();
 		}
 	}
 

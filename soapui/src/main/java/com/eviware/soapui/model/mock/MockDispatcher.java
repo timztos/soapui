@@ -25,13 +25,5 @@ public interface MockDispatcher
 	public MockResult dispatchRequest( HttpServletRequest request, HttpServletResponse response )
 			throws DispatchException;
 
-	public int getMockResultCount();
-
-	public MockResult getMockResultAt( int index );
-
 	public void setLogEnabled( boolean logEnabled );
-
-	public void clearResults();
-
-	public void setMaxResults( long maxNumberOfResults );
 }
