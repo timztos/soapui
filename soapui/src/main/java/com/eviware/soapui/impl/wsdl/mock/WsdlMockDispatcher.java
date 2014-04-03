@@ -12,7 +12,9 @@
  * distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the Licence for the specific language governing permissions and limitations
  * under the Licence.
-*/package com.eviware.soapui.impl.wsdl.mock;
+*/
+
+package com.eviware.soapui.impl.wsdl.mock;
 
 import com.eviware.soapui.SoapUI;
 import com.eviware.soapui.impl.WsdlInterfaceFactory;
@@ -24,9 +26,9 @@ import com.eviware.soapui.impl.wsdl.support.soap.SoapUtils;
 import com.eviware.soapui.impl.wsdl.support.soap.SoapVersion;
 import com.eviware.soapui.impl.wsdl.support.wsdl.WsdlUtils;
 import com.eviware.soapui.model.iface.Interface;
+import com.eviware.soapui.model.mock.MockDispatcher;
 import com.eviware.soapui.model.mock.MockResult;
 import com.eviware.soapui.model.propertyexpansion.PropertyExpander;
-import com.eviware.soapui.model.support.AbstractMockDispatcher;
 import com.eviware.soapui.model.support.ModelSupport;
 import com.eviware.soapui.support.StringUtils;
 import com.eviware.soapui.support.Tools;
@@ -42,16 +44,11 @@ import javax.wsdl.Definition;
 import javax.wsdl.Import;
 import javax.wsdl.factory.WSDLFactory;
 import javax.wsdl.xml.WSDLWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringReader;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WsdlMockDispatcher extends AbstractMockDispatcher
+public class WsdlMockDispatcher implements MockDispatcher
 {
 
 	private WsdlMockService mockService;
@@ -121,18 +118,15 @@ public class WsdlMockDispatcher extends AbstractMockDispatcher
 				if( mockRequest.getMethod() == RestRequestInterface.HttpMethod.POST )
 					result = dispatchPostRequest( mockRequest );
 				else
-					result = super.dispatchRequest( request, response );
+					result = dispatchGetRequest( request, response );
 			}
 
 			mockService.runAfterRequestScript( mockContext, ( MockResult )result );
 			return ( MockResult )result;
 		}
-		catch( Throwable e )
+		catch( Exception e )
 		{
-			if( e instanceof DispatchException )
-				throw ( DispatchException )e;
-			else
-				throw new DispatchException( e );
+			throw new DispatchException( e );
 		}
 		finally
 		{

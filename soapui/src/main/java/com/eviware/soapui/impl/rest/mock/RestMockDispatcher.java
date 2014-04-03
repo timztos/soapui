@@ -12,20 +12,22 @@
  * distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the Licence for the specific language governing permissions and limitations
  * under the Licence.
-*/package com.eviware.soapui.impl.rest.mock;
+*/
+
+package com.eviware.soapui.impl.rest.mock;
 
 import com.eviware.soapui.SoapUI;
 import com.eviware.soapui.impl.wsdl.mock.DispatchException;
 import com.eviware.soapui.impl.wsdl.mock.WsdlMockRunContext;
+import com.eviware.soapui.model.mock.MockDispatcher;
 import com.eviware.soapui.model.mock.MockResult;
-import com.eviware.soapui.model.support.AbstractMockDispatcher;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class RestMockDispatcher extends AbstractMockDispatcher
+public class RestMockDispatcher implements MockDispatcher
 {
 
 	private RestMockService mockService;

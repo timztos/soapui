@@ -317,8 +317,6 @@ public class WsdlMockServiceDesktopPanel<MockServiceType extends AbstractMockSer
 			public void actionPerformed( ActionEvent arg0 )
 			{
 				testLogList.setEnabled( enableLogCheckBox.isSelected() );
-				if( mockRunner != null )
-					mockRunner.setLogEnabled( enableLogCheckBox.isSelected() );
 
 				// border needs to be repainted..
 				logScrollPane.repaint();
@@ -432,7 +430,6 @@ public class WsdlMockServiceDesktopPanel<MockServiceType extends AbstractMockSer
 		public void onMockRunnerStart( MockRunner runner )
 		{
 			mockRunner = ( WsdlMockRunner )runner;
-			mockRunner.setLogEnabled( enableLogCheckBox.isSelected() );
 
 			progressBarWrapper.setIndeterminate( true );
 

@@ -231,10 +231,4 @@ public class WsdlMockRunner implements MockRunner
 			listener.onMockRunnerStart( this );
 		}
 	}
-
-	public void setLogEnabled( boolean logEnabled )
-	{
-		dispatcher.setLogEnabled( logEnabled );
-	}
-
 }

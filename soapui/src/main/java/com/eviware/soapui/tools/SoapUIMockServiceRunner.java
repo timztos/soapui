@@ -212,7 +212,6 @@ public class SoapUIMockServiceRunner extends AbstractSoapUIRunner
 
 			mockService.addMockRunListener( new LogListener() );
 			MockRunner runner = mockService.start();
-			runner.setLogEnabled( false );
 			runners.add( runner );
 		}
 		catch( Exception e )
